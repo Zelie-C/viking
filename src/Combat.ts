@@ -15,6 +15,7 @@ export class Combat{
     public combattre(){
         let weakestViking: Viking;
         let strongestViking: Viking;
+        
         let totalForceV1: number = this.viking1.force + this.viking1.arme.force;
         let totalForceV2: number = this.viking2.force + this.viking2.arme.force;
 

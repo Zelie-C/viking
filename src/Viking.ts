@@ -12,4 +12,12 @@ export class Viking {
         this.force = force;
         this.arme = arme;
     }
+
+    public attaque() {
+        return this.force + this.arme.force
+    }
+
+    public subit() {
+        return 
+    }
 }
