@@ -5,8 +5,12 @@ classDiagram
     class Viking{
         +String nom
         +Int pv
-        +Int force
+        -Int pvMax
+        -Int force
+        -Int defense
         +Arme arme
+        +attack()
+        +takeDamage()
     }
     class Arme {
         +String nom
@@ -17,7 +21,7 @@ classDiagram
         +Viking viking1
         +Viking viking2
         +Number[] pvLevel
-        +combattre()
+        +simuler()
         +getWinner()
         +getLoser()
     }

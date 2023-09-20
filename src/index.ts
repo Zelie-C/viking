@@ -8,7 +8,7 @@ const hache = new Arme("Hache", 8)
 
 const ragnar = new Viking("Ragnar", 100, 15, 4, hache)
 
-const lagertha = new Viking("Lagertha", 120, 20, 5, lameDeSang)
+const lagertha = new Viking("Lagertha", 120, 16, 5, lameDeSang)
 
 const combat1 = new Combat(ragnar, lagertha);
 combat1.simuler();
