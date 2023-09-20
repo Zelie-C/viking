@@ -12,50 +12,38 @@ export class Combat{
 
     }
 
-    public combattre(){
+    public simuler(){
         let weakestViking: Viking;
         let strongestViking: Viking;
-        
-        let totalForceV1: number = this.viking1.force + this.viking1.arme.force;
-        let totalForceV2: number = this.viking2.force + this.viking2.arme.force;
 
-        if (totalForceV1 > totalForceV2) {
+        if (this.viking1.force > this.viking2.force) {
             strongestViking = this.viking1;
             weakestViking = this.viking2;
         } else {
             weakestViking = this.viking1;
             strongestViking = this.viking2
         }
-        
-        let vikingWeakestToAttack = true
-        while(this.viking1.pv > 0 && this.viking2.pv > 0){
 
-            if (Math.floor(Math.random() * 100) > 10) {
-                if(vikingWeakestToAttack){
-                    strongestViking.pv -= weakestViking.force;
-                }
-                else {
-                    weakestViking.pv -= strongestViking.force;
-                }
-            } else {
-                if(vikingWeakestToAttack){
-                    strongestViking.pv -= weakestViking.force *2;
-                } else {
-                    weakestViking.pv -= strongestViking.force *2;
-                }
-            }
-            vikingWeakestToAttack = !vikingWeakestToAttack
+        while(weakestViking.pv > 0 && strongestViking.pv > 0){
+
+            let attack = weakestViking.attack();
+            let defense = strongestViking.takeDamage(attack);
+            attack = strongestViking.attack();
+            defense = weakestViking.takeDamage(attack)
+
         }
 
-        this.pvLevel = [this.viking1.pv, this.viking2.pv]
+        return this.pvLevel = [this.viking1.pv, this.viking2.pv]
 
     }
 
     public getWinner() {
         if (this.pvLevel[0] > 0) {
-            return this.viking1;
+          console.log(`${this.viking1.nom} gagne`);
+          return this.viking1;
         } else {
-            return this.viking2;
+          console.log(`${this.viking2.nom} gagne`)
+          return this.viking2;
         }
     }
 
