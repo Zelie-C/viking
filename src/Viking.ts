@@ -7,8 +7,8 @@ export class Viking extends CharacterType {
     private static _intelligenceBonus: number;
     private static _pmBonus: number;
     private static _criticBonus: number;
-    
-    
+
+
 
     constructor(typeName: string){
         super(typeName, Viking._pvBonus, Viking._forceBonus, Viking._speedBonus, Viking._intelligenceBonus, Viking._pmBonus, Viking._criticBonus)
@@ -20,12 +20,12 @@ export class Viking extends CharacterType {
         Viking._criticBonus = 0.08;
     }
 
-    specialCapacity(attaqueValue: number): {number, number} {
+    specialCapacity(attaqueValue: number): [number, number] {
         let restauredPv: number = 0
         let restauredPm: number = 0
             restauredPv = Math.floor(attaqueValue * 0.15)
             restauredPm = Math.floor(attaqueValue * 0.03)
-        return {restauredPv, restauredPm}
+        return [restauredPv, restauredPm]
     }
 
 }

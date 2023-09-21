@@ -5,5 +5,5 @@
     - ajouts accesseurs pour CHAQUE attribut
     - réécriture code pour qu'il fonctionne avec le nommage et les accesseurs.
 
-2. Changement class Viking en perso de base sans type (fin 11h30)
-3. Ajouts des class classes de personnages par héritage (extends)
+2. Changement class Viking en perso de base sans type (fin 14h45)
+3. Ajouts des class classes de personnages par héritage (extends) (fin 16h30)
