@@ -1,32 +1,68 @@
 import { Arme } from "./Arme";
 
 export class Viking {
-    nom: string;
-    pv: number;
+    private _nom: string;
+    private _pv: number;
     private _pvMax: number;
     private _force: number;
     private _defense: number;
-    arme: Arme;
+    private _arme: Arme;
 
     constructor(nom: string, pv: number, force: number, defense: number, arme: Arme){
-        this.nom = nom;
-        this.pv = pv;
+        this._nom = nom;
+        this._pv = pv;
         this._pvMax = pv
         this._force = force;
         this._defense = defense
-        this.arme = arme;
+        this._arme = arme;
     }
 
-    public get force(): number {
-      return this._force + this.arme.force;
+    get nom(): string{
+      return this._nom;
     }
 
-    public get defense(): number {
+    set nom(newName: string) {
+      this._nom = newName;
+    }
+
+    get pv(): number{
+      return this._pv;
+    }
+
+    set pv(newPv: number) {
+      this._pv = newPv;
+    }
+
+    get pvMax(): number {
+      return this._pvMax;
+    }
+
+    set pvMax(newPvMax: number) {
+      this._pvMax = newPvMax
+    }
+
+    get force(): number {
+      return this._force;
+    }
+
+    set force(newForce: number) {
+      this._force = newForce;
+    }
+
+    get defense(): number {
       return this._defense;
     }
 
-    public get pvMax(): number {
-      return this._pvMax;
+    set defense(newDefense: number) {
+      this._defense = newDefense;
+    }
+
+    get arme(): Arme {
+      return this._arme;
+    }
+
+    set arme(newArme: Arme) {
+      this._arme = newArme
     }
 
     public attack(): number {
