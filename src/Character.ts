@@ -1,10 +1,11 @@
 import { Arme } from "./Arme";
+import { CharacterType } from "./CharacterType";
 
 export class Character {
-    private _nom: string;
+    private _name: string;
     private _level: number;
     private _exp: number;
-    private _characterType: CharacterType;
+    private _characterType: CharacterType | null;
     private _pv: number;
     private _force: number;
     private _speed: number;
@@ -13,7 +14,7 @@ export class Character {
     private _critic: number;
 
     constructor(nom: string){
-        this._nom = nom;
+        this._name = nom;
         this._level = 1;
         this._exp = 0;
         this._pv = 50;
@@ -26,11 +27,11 @@ export class Character {
     }
 
     get nom(): string{
-      return this._nom;
+      return this._name;
     }
 
     set nom(newName: string) {
-      this._nom = newName;
+      this._name = newName;
     }
 
     get level(): number{
@@ -49,7 +50,7 @@ export class Character {
       this._exp = newExp;
     }
 
-    get characterType(): CharacterType{
+    get characterType(): CharacterType | null{
       return this._characterType;
     }
 
@@ -134,4 +135,4 @@ export class Character {
 //     console.log(`${this.nom} perd ${damage - this.defense} points de vie`)
 //     return this.pv -= damage - this.defense;
 //   }
-// }
+}
