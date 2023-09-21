@@ -1,3 +1,4 @@
+import { Archer } from "./Archer";
 import { Arme } from "./Arme";
 import { CharacterType } from "./CharacterType";
 

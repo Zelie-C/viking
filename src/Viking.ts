@@ -20,12 +20,12 @@ export class Viking extends CharacterType {
         Viking._criticBonus = 0.08;
     }
 
-    specialCapacity(attaqueValue: number): number {
+    specialCapacity(attaqueValue: number): {number, number} {
         let restauredPv: number = 0
         let restauredPm: number = 0
             restauredPv = Math.floor(attaqueValue * 0.15)
             restauredPm = Math.floor(attaqueValue * 0.03)
-        return restauredPv
+        return {restauredPv, restauredPm}
     }
 
 }
