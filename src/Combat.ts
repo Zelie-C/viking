@@ -1,57 +1,82 @@
-import { Viking } from "./Viking";
+import { Character } from "./Character";
 
 export class Combat{
-    viking1: Viking;
-    viking2: Viking;
-    pvLevel: number[];
+    private _character1: Character;
+    private _character2: Character;
+    private _pvLevel: number[];
 
-    constructor(viking1: Viking, viking2: Viking, pvLevel = [viking1.pv, viking2.pv]){
-        this.viking1 = viking1;
-        this.viking2 = viking2;
-        this.pvLevel = pvLevel;
+    constructor(character1: Character, character2: Character, pvLevel = [character1.pv, character2.pv]){
+        this._character1 = character1;
+        this._character2 = character2;
+        this._pvLevel = pvLevel;
 
     }
 
+    get character1(): Character {
+        return this._character1;
+    }
+    
+    set character1(newCharacter1: Character) {
+        this._character1 = newCharacter1;
+    }
+
+    get character2(): Character {
+        return this._character2;
+    }
+    
+    set character2(newCharacter2: Character) {
+        this._character1 = newCharacter2;
+    }
+
+    get pvLevel(): number[] {
+        return this._pvLevel;
+    }
+
+    set pvLevel(newPvLevel: number[]) {
+        this._pvLevel = newPvLevel;
+    }
+
+
     public simuler(){
-        let weakestViking: Viking;
-        let strongestViking: Viking;
+        let weakestCharacter: Character;
+        let strongestCharacter: Character;
 
-        if (this.viking1.force > this.viking2.force) {
-            strongestViking = this.viking1;
-            weakestViking = this.viking2;
+        if (this.character1.force > this.character2.force) {
+            strongestCharacter = this.character1;
+            weakestCharacter = this.character2;
         } else {
-            weakestViking = this.viking1;
-            strongestViking = this.viking2
+            weakestCharacter = this.character1;
+            strongestCharacter = this.character2
         }
 
-        while(weakestViking.pv > 0 && strongestViking.pv > 0){
+        while(weakestCharacter.pv > 0 && strongestCharacter.pv > 0){
 
-            let attack = weakestViking.attack();
-            let defense = strongestViking.takeDamage(attack);
-            attack = strongestViking.attack();
-            defense = weakestViking.takeDamage(attack)
+            let attack = weakestCharacter.attack();
+            let defense = strongestCharacter.takeDamage(attack);
+            attack = strongestCharacter.attack();
+            defense = weakestCharacter.takeDamage(attack)
 
         }
 
-        return this.pvLevel = [this.viking1.pv, this.viking2.pv]
+        return this.pvLevel
 
     }
 
     public getWinner() {
         if (this.pvLevel[0] > 0) {
-          console.log(`${this.viking1.nom} gagne`);
-          return this.viking1;
+          console.log(`${this.character1.nom} gagne`);
+          return this.character1;
         } else {
-          console.log(`${this.viking2.nom} gagne`)
-          return this.viking2;
+          console.log(`${this.character2.nom} gagne`)
+          return this.character2;
         }
     }
 
     public getLoser() {
         if (this.pvLevel[0] <= 0) {
-            return this.viking1;
+            return this.character1;
         } else {
-            return this.viking2;
+            return this.character2;
         }
     }
 

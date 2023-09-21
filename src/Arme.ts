@@ -1,10 +1,26 @@
 export class Arme{
-    nom: string;
-    force: number;
+    private _nom: string;
+    private _force: number;
 
     constructor(nom: string, force: number) {
-        this.nom = nom;
-        this.force = force;
+        this._nom = nom;
+        this._force = force;
+    }
+
+    get nom(): string {
+        return this._nom;
+    }
+
+    set nom(newName: string) {
+        this._nom = newName;
+    }
+    
+    get force() {
+        return this._force;
+    }
+
+    set force(newForce: number) {
+        this._force = newForce;
     }
 
     public possedeVolDeVie() {

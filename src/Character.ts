@@ -1,6 +1,6 @@
 import { Arme } from "./Arme";
 
-export class Viking {
+export class Character {
     private _nom: string;
     private _pv: number;
     private _pvMax: number;
