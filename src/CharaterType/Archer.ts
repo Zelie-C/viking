@@ -17,7 +17,7 @@ export class Archer extends CharacterType {
     specialCapacity(archer: Character, opponents: Character[]): number {
         let opponentsSpeederThanArcher: Character[] = [];
         for (let i = 0; i < opponents.length; i++) {
-            if (opponents[i].speed + opponents[i].characterType.speedBonus > archer.speed + archer.characterType.speedBonus) {
+            if (opponents[i].speed  > archer.speed) {
                 opponentsSpeederThanArcher.push(opponents[i])
             }
         }

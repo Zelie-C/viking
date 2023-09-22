@@ -12,12 +12,21 @@ export class FightHandler {
 
     onHit() {}
 
-    speedComparaison(team1: Character[], team2: Character[]) {
+    charactersSpeedComparaison(team1: Character[], team2: Character[]) {
         
+        let charactersSortedBySpeed: Character[] = team1.concat(team2);
+        charactersSortedBySpeed.sort((a, b) => a.speed - b.speed)
+        return charactersSortedBySpeed;
     }
 
     fight() {
-        this.speedComparaison(this.fighterTeam1, this.fighterTeam2) 
+        this.charactersSpeedComparaison(this.fighterTeam1, this.fighterTeam2);
+
+         
+        let attackerteam1: Character = this.fighterTeam1[0];
+        let attackerteam2: Character = this.fighterTeam2[0];
+
+
     }
 
     public get fighterTeam1(): Character[] {

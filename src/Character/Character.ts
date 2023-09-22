@@ -59,7 +59,7 @@ export class Character {
     }
 
     get pv(): number{
-      return this._pv;
+      return this._pv + this._characterType.viebonus;
     }
 
     set pv(newPv: number) {
@@ -67,7 +67,7 @@ export class Character {
     }
 
     get force(): number {
-      return this._force;
+      return this._force + this.characterType.forceBonus;
     }
 
     set force(newForce: number) {
@@ -75,7 +75,7 @@ export class Character {
     }
 
     get speed(): number {
-      return this._speed;
+      return this._speed + this.characterType.speedBonus;
     }
 
     set speed(newSpeed: number) {
@@ -83,7 +83,7 @@ export class Character {
     }
 
     get intelligence(): number {
-      return this._intelligence;
+      return this._intelligence + this.characterType.intelligenceBonus;
     }
 
     set intelligence(newIntelligence: number) {
@@ -91,7 +91,7 @@ export class Character {
     }
 
     get pm(): number {
-      return this._pm;
+      return this._pm + this.characterType.pmBonus;
     }
 
     set pm(newPm: number) {
@@ -99,7 +99,7 @@ export class Character {
     }
 
     get critic(): number {
-      return this._critic;
+      return this._critic + this.characterType.criticBonus;
     }
 
     set critic(newCritic: number) {
