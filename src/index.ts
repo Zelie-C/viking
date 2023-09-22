@@ -1,4 +1,4 @@
-import { Character } from "./Character";
+import { Character } from "./Character/Character";
 import { Arme } from "./Arme";
 import { Combat } from "./Combat";
 

@@ -19,10 +19,6 @@ export class CharacterType {
     }
 
     
-    specialCapacity(attackValue: number) {
-        
-    }
-    
     public get typeName(): string {
         return this._typeName
     }

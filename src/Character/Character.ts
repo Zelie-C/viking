@@ -1,12 +1,11 @@
-import { Archer } from "./Archer";
-import { Arme } from "./Arme";
-import { CharacterType } from "./CharacterType";
+import { CharacterType } from "../CharaterType/CharacterType";
+import { Basic } from "../CharaterType/Basic";
 
 export class Character {
     private _name: string;
     private _level: number;
     private _exp: number;
-    private _characterType: CharacterType | null;
+    private _characterType: CharacterType;
     private _pv: number;
     private _force: number;
     private _speed: number;
@@ -14,12 +13,12 @@ export class Character {
     private _pm: number;
     private _critic: number;
 
-    constructor(nom: string){
-        this._name = nom;
+    constructor(name: string){
+        this._name = name;
         this._level = 1;
         this._exp = 0;
         this._pv = 50;
-        this._characterType = null;
+        this._characterType = new Basic;
         this._force = 10;
         this._speed = 10;
         this._intelligence = 10
@@ -27,11 +26,11 @@ export class Character {
         this._critic = 0.02;
     }
 
-    get nom(): string{
+    get name(): string{
       return this._name;
     }
 
-    set nom(newName: string) {
+    set name(newName: string) {
       this._name = newName;
     }
 
@@ -51,7 +50,7 @@ export class Character {
       this._exp = newExp;
     }
 
-    get characterType(): CharacterType | null{
+    get characterType(): CharacterType{
       return this._characterType;
     }
 
@@ -107,33 +106,33 @@ export class Character {
       this._critic = newCritic;
     }
 
-//     public attack(): number {
-//       let damage: number;
-//       let coupCritique = Math.random();
-//       if (coupCritique < 0.1) {
-//         damage = this.force *2;
-//         console.log(`${this.nom} fait un coup critique et inflige ${damage} de dégats`)
-//       } else {
-//         damage = this.force
-//         console.log(`${this.nom} inflige ${damage} de dégats`)
-//       }
-//       if (this.arme.possedeVolDeVie() && this.pv < this.pvMax){
-//         let stealedPv = Math.trunc((this.force) * 0.13);
-//         if (this.pv + stealedPv > this.pvMax) {
-//           console.log(`${this.nom} récupère tous ses points de vie`)
-//           this.pv += this.pvMax
-//         } else {
-//           this.pv += this.pv + stealedPv
-//           console.log(`${this.nom} récupère ${stealedPv} points de vie`)
-//         }
-//       } else if (this.arme.possedeVolDeVie() && this.pv === this.pvMax) {
-//         console.log(`${this.nom} ne récupère pas de vie`)
-//       }
-//     return damage;
-//   }
-
-//   public takeDamage(damage: number) {
-//     console.log(`${this.nom} perd ${damage - this.defense} points de vie`)
-//     return this.pv -= damage - this.defense;
-//   }
-}
+  }
+  //     public attack(): number {
+  //       let damage: number;
+  //       let coupCritique = Math.random();
+  //       if (coupCritique < 0.1) {
+  //         damage = this.force *2;
+  //         console.log(`${this.nom} fait un coup critique et inflige ${damage} de dégats`)
+  //       } else {
+  //         damage = this.force
+  //         console.log(`${this.nom} inflige ${damage} de dégats`)
+  //       }
+  //       if (this.arme.possedeVolDeVie() && this.pv < this.pvMax){
+  //         let stealedPv = Math.trunc((this.force) * 0.13);
+  //         if (this.pv + stealedPv > this.pvMax) {
+  //           console.log(`${this.nom} récupère tous ses points de vie`)
+  //           this.pv += this.pvMax
+  //         } else {
+  //           this.pv += this.pv + stealedPv
+  //           console.log(`${this.nom} récupère ${stealedPv} points de vie`)
+  //         }
+  //       } else if (this.arme.possedeVolDeVie() && this.pv === this.pvMax) {
+  //         console.log(`${this.nom} ne récupère pas de vie`)
+  //       }
+  //     return damage;
+  //   }
+  
+  //   public takeDamage(damage: number) {
+  //     console.log(`${this.nom} perd ${damage - this.defense} points de vie`)
+  //     return this.pv -= damage - this.defense;
+  //   }

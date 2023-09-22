@@ -1,4 +1,4 @@
-import { Character } from "./Character";
+import { Character } from "./Character/Character";
 
 export class Combat{
     private _character1: Character;
