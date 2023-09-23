@@ -1,44 +1,51 @@
 import { Character } from "../Character/Character";
+import { NpcTeam } from "../NpcTeam";
+import { PlayerTeam } from "../PlayerTeam";
 
 export class FightHandler {
-    private _fighterTeam1: Character[] = [];
-    private _fighterTeam2: Character[] = [];
+    private _playerTeam: PlayerTeam;
+    private _npcTeam: NpcTeam;
 
-    beforeAttack(){}
+    constructor(playerTeam: PlayerTeam, npcTeam: NpcTeam){
+      this._playerTeam = playerTeam;
+      this._npcTeam = npcTeam;
+    }
 
-    attack() {}
+    beforeFight(){
+      let allCharacters = this.charactersSpeedComparaison(this.playerTeam, this.npcTeam);
+      for (let i = 0; i < allCharacters.length; i++) {
+        if (allCharacters[i].characterType.typeName === "Wizard") {
+          allCharacters[i].characterType.specialCapacity();
+        } else if (allCharacters[0].characterType.typeName === "Archer") {
+          allCharacters[0].characterType.specialCapacity();
+        }
+      }
+    }
 
-    afterAttack() {}
+    charactersSpeedComparaison(team1: PlayerTeam, team2: NpcTeam) {
 
-    onHit() {}
-
-    charactersSpeedComparaison(team1: Character[], team2: Character[]) {
-
-        let charactersSortedBySpeed: Character[] = team1.concat(team2);
+        let charactersSortedBySpeed: Character[] = team1.composition.concat(team2.composition);
         charactersSortedBySpeed.sort((a, b) => a.speed - b.speed)
         return charactersSortedBySpeed;
     }
 
     fight() {
-        let allCharacters = this.charactersSpeedComparaison(this.fighterTeam1, this.fighterTeam2);
 
-        for (let i = 0; i < allCharacters.length; i++){
-          let attacker: Character = allCharacters[i];
-
-        }
 
     }
 
-    public get fighterTeam1(): Character[] {
-        return this._fighterTeam1;
+    onHit() {}
+
+    public get playerTeam(): PlayerTeam {
+        return this._playerTeam;
     }
-    public set fighterTeam1(value: Character[]) {
-        this._fighterTeam1 = value;
+    public set playerTeam(value: PlayerTeam) {
+        this._playerTeam = value;
     }
-    public get  fighterTeam2(): Character[] {
-        return this._fighterTeam2;
+    public get npcTeam(): NpcTeam {
+        return this._npcTeam;
     }
-    public set  fighterTeam2(value: Character[]) {
-        this._fighterTeam2 = value;
+    public set npcTeam(value: NpcTeam) {
+        this._npcTeam = value;
     }
 }

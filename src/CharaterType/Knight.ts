@@ -13,8 +13,9 @@ export class Knight extends CharacterType {
         super(Knight._typeName, Knight._pvBonus, Knight._forceBonus, Knight._speedBonus, Knight._intelligenceBonus, Knight._pmBonus, Knight._criticBonus)
     }
 
-    // specialCapacity(attaqueValue: number): number {
-        
-    // }
+    override specialCapacity(attackDamage: number): number {
+      let reduceDamage = attackDamage * 0.75;
+      return reduceDamage;
+    }
 
 }

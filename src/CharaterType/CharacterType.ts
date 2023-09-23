@@ -1,4 +1,4 @@
-export class CharacterType {
+export abstract class CharacterType {
     private _typeName: string
     private _pvBonus: number;
     private _forceBonus: number;
@@ -8,9 +8,9 @@ export class CharacterType {
     private _criticBonus: number;
 
 
-    constructor(typeName: string, vieB : number, forceB: number, speedB: number, intelB: number, pmB: number, critB: number) {
+    constructor(typeName: string, healthB : number, forceB: number, speedB: number, intelB: number, pmB: number, critB: number) {
         this._typeName = typeName;
-        this._pvBonus = vieB;
+        this._pvBonus = healthB;
         this._forceBonus = forceB;
         this._speedBonus = speedB;
         this._intelligenceBonus = intelB;
@@ -18,17 +18,19 @@ export class CharacterType {
         this._criticBonus = critB;
     }
 
-    
+
+    abstract specialCapacity(){}
+
     public get typeName(): string {
         return this._typeName
     }
     public set typeName(newTypeName: string){
         this._typeName = newTypeName;
     }
-    public get viebonus(): number {
+    public get healthBonus(): number {
         return this._pvBonus;
     }
-    public set viebonus(value: number) {
+    public set healthBonus(value: number) {
         this._pvBonus = value;
     }
     public get forceBonus(): number {

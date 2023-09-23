@@ -15,6 +15,7 @@ export class Character {
     private _critic: number;
     private _team: Team | null;
 
+
     constructor(name: string){
         this._name = name;
         this._level = 1;
@@ -26,7 +27,7 @@ export class Character {
         this._intelligence = 10
         this._pm = 50;
         this._critic = 0.02;
-        this.
+        this._team = null;
     }
 
     get name(): string{
@@ -62,53 +63,82 @@ export class Character {
     }
 
     get pv(): number{
-      return this._pv + this._characterType.viebonus;
+      return this._pv;
     }
 
     set pv(newPv: number) {
       this._pv = newPv;
     }
 
+    get pvTotal(): number {
+      return this._pv + this._characterType.viebonus;
+    }
+
     get force(): number {
-      return this._force + this.characterType.forceBonus;
+      return this._force;
     }
 
     set force(newForce: number) {
       this._force = newForce;
     }
 
+    get forceTotal(): number {
+      return this._force + this.characterType.forceBonus;
+    }
+
     get speed(): number {
-      return this._speed + this.characterType.speedBonus;
+      return this._speed;
     }
 
     set speed(newSpeed: number) {
       this._speed = newSpeed;
     }
 
+    get totalSpeed(): number {
+      return this._speed + this.characterType.speedBonus;
+    }
+
     get intelligence(): number {
-      return this._intelligence + this.characterType.intelligenceBonus;
+      return this._intelligence;
     }
 
     set intelligence(newIntelligence: number) {
       this._intelligence = newIntelligence;
     }
 
+    get intelligenceTotal(): number {
+      return this._intelligence + this.characterType.intelligenceBonus;
+    }
+
     get pm(): number {
-      return this._pm + this.characterType.pmBonus;
+      return this._pm;
     }
 
     set pm(newPm: number) {
       this._pm = newPm;
     }
 
+    get pmTotal(): number {
+      return this._pm + this.characterType.pmBonus
+    }
+
     get critic(): number {
-      return this._critic + this.characterType.criticBonus;
+      return this._critic;
     }
 
     set critic(newCritic: number) {
       this._critic = newCritic;
     }
 
+    get criticTotal(): number {
+      return this._critic + this.characterType.criticBonus;
+    }
+    public get team(): Team | null {
+      return this._team;
+    }
+    public set team(value: Team | null) {
+      this._team = value;
+    }
   }
   //     public attack(): number {
   //       let damage: number;

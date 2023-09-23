@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "outDir": "dist",
     "target": "es6",
+    "noImplicitOverride": true,
     "strict": true
   },
   "include": [
