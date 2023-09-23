@@ -1,5 +1,6 @@
 import { CharacterType } from "../CharaterType/CharacterType";
 import { Basic } from "../CharaterType/Basic";
+import { Team } from "../Team";
 
 export class Character {
     private _name: string;
@@ -12,6 +13,7 @@ export class Character {
     private _intelligence: number;
     private _pm: number;
     private _critic: number;
+    private _team: Team | null;
 
     constructor(name: string){
         this._name = name;
@@ -24,6 +26,7 @@ export class Character {
         this._intelligence = 10
         this._pm = 50;
         this._critic = 0.02;
+        this.
     }
 
     get name(): string{
@@ -131,7 +134,7 @@ export class Character {
   //       }
   //     return damage;
   //   }
-  
+
   //   public takeDamage(damage: number) {
   //     console.log(`${this.nom} perd ${damage - this.defense} points de vie`)
   //     return this.pv -= damage - this.defense;

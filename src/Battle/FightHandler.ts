@@ -3,29 +3,29 @@ import { Character } from "../Character/Character";
 export class FightHandler {
     private _fighterTeam1: Character[] = [];
     private _fighterTeam2: Character[] = [];
-    
+
     beforeAttack(){}
-    
+
     attack() {}
-    
+
     afterAttack() {}
 
     onHit() {}
 
     charactersSpeedComparaison(team1: Character[], team2: Character[]) {
-        
+
         let charactersSortedBySpeed: Character[] = team1.concat(team2);
         charactersSortedBySpeed.sort((a, b) => a.speed - b.speed)
         return charactersSortedBySpeed;
     }
 
     fight() {
-        this.charactersSpeedComparaison(this.fighterTeam1, this.fighterTeam2);
+        let allCharacters = this.charactersSpeedComparaison(this.fighterTeam1, this.fighterTeam2);
 
-         
-        let attackerteam1: Character = this.fighterTeam1[0];
-        let attackerteam2: Character = this.fighterTeam2[0];
+        for (let i = 0; i < allCharacters.length; i++){
+          let attacker: Character = allCharacters[i];
 
+        }
 
     }
 
