@@ -1,3 +1,5 @@
+import { Character } from "../Character/Character";
+
 export abstract class CharacterType {
     private _typeName: string
     private _pvBonus: number;
@@ -19,7 +21,9 @@ export abstract class CharacterType {
     }
 
 
-    abstract specialCapacity(){}
+    specialCapacity(character: Character): number{
+      return character.critic;
+     }
 
     public get typeName(): string {
         return this._typeName

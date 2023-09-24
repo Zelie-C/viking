@@ -15,9 +15,9 @@ export class FightHandler {
       let allCharacters = this.charactersSpeedComparaison(this.playerTeam, this.npcTeam);
       for (let i = 0; i < allCharacters.length; i++) {
         if (allCharacters[i].characterType.typeName === "Wizard") {
-          allCharacters[i].characterType.specialCapacity();
+          allCharacters[i].characterType.specialCapacity;
         } else if (allCharacters[0].characterType.typeName === "Archer") {
-          allCharacters[0].characterType.specialCapacity();
+          allCharacters[0].characterType.specialCapacity;
         }
       }
     }

@@ -114,7 +114,7 @@ export class Character {
       return this._pm;
     }
 
-    set pm(newPm: number) {
+    set pm(newPm: number){
       this._pm = newPm;
     }
 
