@@ -1,3 +1,4 @@
+import { Character } from "../Character/Character";
 import { CharacterType } from "./CharacterType";
 
 export class Viking extends CharacterType {
@@ -15,7 +16,7 @@ export class Viking extends CharacterType {
         super(Viking._typeName, Viking._pvBonus, Viking._forceBonus, Viking._speedBonus, Viking._intelligenceBonus, Viking._pmBonus, Viking._criticBonus)
     }
 
-    specialCapacityAfterAttack(attaqueValue: number): [number, number] {
+    override specialCapacity(attaqueValue: number, character: Character): number[] {
         let restauredPv: number = 0
         let restauredPm: number = 0
             restauredPv = Math.floor(attaqueValue * 0.15)

@@ -21,7 +21,8 @@ export abstract class CharacterType {
     }
 
 
-    specialCapacity(character: Character){
+    specialCapacity(value: number ,character: Character): number[]{
+        return [0, 2]
     }
 
     specialCapacityBeforeAttack(character: Character): number{

@@ -32,8 +32,8 @@ export class Character {
         this._team = null;
     }
 
-    specialCapacityBeforeAttack(){
-
+    isDead() {
+      
     }
 
     get name(): string{

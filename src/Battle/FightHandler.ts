@@ -11,17 +11,6 @@ export class FightHandler {
       this._npcTeam = npcTeam;
     }
 
-    beforeFight(){
-      let allCharacters = this.charactersSpeedComparaison(this.playerTeam, this.npcTeam);
-      for (let i = 0; i < allCharacters.length; i++) {
-        if (allCharacters[i].characterType.typeName === "Wizard") {
-          allCharacters[i].characterType.specialCapacity;
-        } else if (allCharacters[0].characterType.typeName === "Archer") {
-          allCharacters[0].characterType.specialCapacity;
-        }
-      }
-    }
-
     charactersSpeedComparaison(team1: PlayerTeam, team2: NpcTeam) {
 
         let charactersSortedBySpeed: Character[] = team1.composition.concat(team2.composition);
@@ -29,9 +18,20 @@ export class FightHandler {
         return charactersSortedBySpeed;
     }
 
+    beforeFight(){
+      let allCharacters = this.charactersSpeedComparaison(this.playerTeam, this.npcTeam);
+      for (let i = 0; i < allCharacters.length; i++) {
+        if (allCharacters[i].characterType.typeName === "Wizard") {
+          allCharacters[i].characterType.specialCapacityBeforeAttack;
+        } else if (allCharacters[0].characterType.typeName === "Archer") {
+          allCharacters[0].characterType.specialCapacityBeforeAttack;
+        }
+      }
+    }
+
+
     fight() {
-
-
+        
     }
 
     onHit() {}
