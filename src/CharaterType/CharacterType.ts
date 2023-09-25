@@ -21,9 +21,12 @@ export abstract class CharacterType {
     }
 
 
-    specialCapacity(character: Character): number{
-      return character.critic;
-     }
+    specialCapacity(character: Character){
+    }
+
+    specialCapacityBeforeAttack(character: Character): number{
+        return 2
+    }
 
     public get typeName(): string {
         return this._typeName

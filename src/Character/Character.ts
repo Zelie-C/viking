@@ -3,34 +3,33 @@ import { Basic } from "../CharaterType/Basic";
 import { Team } from "../Team/Team";
 
 export class Character {
-    private _name: string = "";
-    private _level: number = 1;
-    private _exp: number = 0;
+    private _name: string;
+    private _level: number;
+    private _exp: number;
     private _characterType: CharacterType;
-    private _pvMax: number = 50;
-    private _pv: number = 50;
-    private _force: number = 10;
-    private _speed: number = 10;
-    private _intelligence: number = 10;
-    private _pm: number = 50;
-    private _critic: number = 0.02;
-    private _team: Team;
+    private _pv: number;
+    private _pvMax: number;
+    private _force: number;
+    private _speed: number;
+    private _intelligence: number;
+    private _pm: number;
+    private _critic: number;
+    private _team: Team | null;
 
 
-    constructor(name: string, type: CharacterType, team: Team){
+    constructor(name: string){
         this._name = name;
-        this._characterType = type;
-        this._level = this.level;
-        this._exp = this.exp;
-        this._pvMax = this._pvMax + this.characterType.healthBonus;
+        this._level = 1;
+        this._exp = 0;
+        this._pvMax = 50;
         this._pv = this.pvMax;
         this._characterType = new Basic();
-        this._force = this.force + this.characterType.forceBonus;
-        this._speed = this.force + this.characterType.speedBonus;
-        this._intelligence = this.intelligence + this.characterType.intelligenceBonus;
-        this._pm = this.pm + this.characterType.pmBonus;
-        this._critic = this.critic + this.characterType.criticBonus;
-        this._team = team;
+        this._force = 10;
+        this._speed = 10;
+        this._intelligence = 10
+        this._pm = 50;
+        this._critic = 0.02;
+        this._team = null;
     }
 
     specialCapacityBeforeAttack(){
@@ -77,10 +76,13 @@ export class Character {
       this._pv = newPv;
     }
 
+    get pvTotal(): number {
+      return this._pv + this._characterType.healthBonus ;
+    }
+
     public get pvMax(): number {
       return this._pvMax;
     }
-
     public set pvMax(value: number) {
       this._pvMax = value;
     }
@@ -93,12 +95,20 @@ export class Character {
       this._force = newForce;
     }
 
+    get forceTotal(): number {
+      return this._force + this.characterType.forceBonus;
+    }
+
     get speed(): number {
       return this._speed;
     }
 
     set speed(newSpeed: number) {
       this._speed = newSpeed;
+    }
+
+    get totalSpeed(): number {
+      return this._speed + this.characterType.speedBonus;
     }
 
     get intelligence(): number {
@@ -109,12 +119,20 @@ export class Character {
       this._intelligence = newIntelligence;
     }
 
+    get intelligenceTotal(): number {
+      return this._intelligence + this.characterType.intelligenceBonus;
+    }
+
     get pm(): number {
       return this._pm;
     }
 
     set pm(newPm: number){
       this._pm = newPm;
+    }
+
+    get pmTotal(): number {
+      return this._pm + this.characterType.pmBonus
     }
 
     get critic(): number {
@@ -125,10 +143,13 @@ export class Character {
       this._critic = newCritic;
     }
 
-    public get team(): Team {
+    get criticTotal(): number {
+      return this._critic + this.characterType.criticBonus;
+    }
+    public get team(): Team | null {
       return this._team;
     }
-    public set team(value: Team) {
+    public set team(value: Team | null) {
       this._team = value;
     }
   }
