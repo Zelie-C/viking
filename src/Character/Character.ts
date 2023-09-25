@@ -14,22 +14,22 @@ export class Character {
     private _intelligence: number;
     private _pm: number;
     private _critic: number;
-    private _team: Team | null;
+    private _team: Team;
 
 
-    constructor(name: string){
+    constructor(name: string, characterType: CharacterType, team: Team){
         this._name = name;
         this._level = 1;
         this._exp = 0;
         this._pvMax = 50;
         this._pv = this.pvMax;
-        this._characterType = new Basic();
+        this._characterType = characterType;
         this._force = 10;
         this._speed = 10;
         this._intelligence = 10
         this._pm = 50;
         this._critic = 0.02;
-        this._team = null;
+        this._team = team;
     }
 
     isDead(): boolean {
@@ -82,10 +82,6 @@ export class Character {
 
     get pvTotal(): number {
       return this._pv + this._characterType.healthBonus ;
-    }
-
-    set pvTotal(value): number {
-      this.pvTotal -= value
     }
 
     public get pvMax(): number {

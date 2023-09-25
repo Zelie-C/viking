@@ -2,6 +2,10 @@ import { Character } from "../Character/Character";
 import { NpcTeam } from "../Team/NpcTeam";
 import { PlayerTeam } from "../Team/PlayerTeam";
 
+
+
+
+
 export class FightHandler {
     private _playerTeam: PlayerTeam;
     private _npcTeam: NpcTeam;
@@ -17,8 +21,8 @@ export class FightHandler {
         charactersSortedBySpeed.sort((a, b) => a.speed - b.speed)
         return charactersSortedBySpeed;
     }
-
-    beforeFight(){
+    
+    fight() {
       let allCharacters = this.charactersSpeedComparaison(this.playerTeam, this.npcTeam);
       for (let i = 0; i < allCharacters.length; i++) {
         if (allCharacters[i].characterType.typeName === "Wizard") {
@@ -27,11 +31,8 @@ export class FightHandler {
           allCharacters[0].characterType.specialCapacityBeforeAttack;
         }
       }
-    }
-
-
-    fight() {
-        
+      if (allCharacters[0].team?.teamName === "PlayerTeam") {
+      }
     }
 
     onHit() {}
