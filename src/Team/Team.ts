@@ -1,4 +1,4 @@
-import { Character } from "./Character/Character";
+import { Character } from "../Character/Character";
 
 export class Team {
   private _teamName: string;

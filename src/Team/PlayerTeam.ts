@@ -1,5 +1,5 @@
 import { Team } from "./Team";
-import { Character } from "./Character/Character";
+import { Character } from "../Character/Character";
 
 export class PlayerTeam extends Team {
   private static _teamName = "PlayerTeam";

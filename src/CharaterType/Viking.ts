@@ -15,7 +15,7 @@ export class Viking extends CharacterType {
         super(Viking._typeName, Viking._pvBonus, Viking._forceBonus, Viking._speedBonus, Viking._intelligenceBonus, Viking._pmBonus, Viking._criticBonus)
     }
 
-    specialCapacity(attaqueValue: number): [number, number] {
+    specialCapacityAfterAttack(attaqueValue: number): [number, number] {
         let restauredPv: number = 0
         let restauredPm: number = 0
             restauredPv = Math.floor(attaqueValue * 0.15)

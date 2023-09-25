@@ -14,16 +14,17 @@ export class Archer extends CharacterType {
         super(Archer._typeName, Archer._pvBonus, Archer._forceBonus, Archer._speedBonus, Archer._intelligenceBonus, Archer._pmBonus, Archer._criticBonus)
     }
 
-    specialCapacity(archer: Character, opponents: Character[]): number {
-        let opponentsSpeederThanArcher: Character[] = [];
-        for (let i = 0; i < opponents.length; i++) {
-            if (opponents[i].speed  > archer.speed) {
-                opponentsSpeederThanArcher.push(opponents[i])
-            }
-        }
-        if (opponentsSpeederThanArcher = []) {
+    specialCapacityBeforeAttack(archer: Character, opponents: Character[]): number {
+    //     let opponentsSpeederThanArcher: Character[] = [];
+    //     for (let i = 0; i < opponents.length; i++) {
+    //         if (opponents[i].speed  > archer.speed) {
+    //             opponentsSpeederThanArcher.push(opponents[i])
+    //         }
+    //     }
+    //     if (opponentsSpeederThanArcher = []) {
 
-        }
-    }
+    //     }
+    // }
 
+}
 }

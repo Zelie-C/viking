@@ -14,7 +14,7 @@ export class Wizard extends CharacterType {
         super(Wizard._typeName, Wizard._pvBonus, Wizard._forceBonus, Wizard._speedBonus, Wizard._intelligenceBonus, Wizard._pmBonus, Wizard._criticBonus)
     }
 
-    specialCapacity(character: Character) {
+    specialCapacityBeforeAttack(character: Character, target: Character) {
       let pmRecuperation: number = character.intelligenceTotal/2
       pmRecuperation = character.pm(pmRecuperation);
     }

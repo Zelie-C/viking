@@ -1,6 +1,6 @@
 import { Character } from "../Character/Character";
-import { NpcTeam } from "../NpcTeam";
-import { PlayerTeam } from "../PlayerTeam";
+import { NpcTeam } from "../Team/NpcTeam";
+import { PlayerTeam } from "../Team/PlayerTeam";
 
 export class FightHandler {
     private _playerTeam: PlayerTeam;
