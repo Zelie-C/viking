@@ -32,8 +32,12 @@ export class Character {
         this._team = null;
     }
 
-    isDead() {
-      
+    isDead(): boolean {
+      if (this.pvTotal <= 0) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     get name(): string{
@@ -78,6 +82,10 @@ export class Character {
 
     get pvTotal(): number {
       return this._pv + this._characterType.healthBonus ;
+    }
+
+    set pvTotal(value): number {
+      this.pvTotal -= value
     }
 
     public get pvMax(): number {
