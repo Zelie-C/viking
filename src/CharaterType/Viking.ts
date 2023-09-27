@@ -21,6 +21,7 @@ export class Viking extends CharacterType {
         let restauredPm: number = 0
             restauredPv = Math.floor(attaqueValue * 0.15)
             restauredPm = Math.floor(attaqueValue * 0.03)
+
         return [restauredPv, restauredPm]
     }
 

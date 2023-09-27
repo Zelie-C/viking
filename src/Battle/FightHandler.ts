@@ -1,7 +1,10 @@
 import { Character } from "../Character/Character";
+import { Archer } from "../CharaterType/Archer";
+import { CharacterType } from "../CharaterType/CharacterType";
+import { Viking } from "../CharaterType/Viking";
 import { NpcTeam } from "../Team/NpcTeam";
 import { PlayerTeam } from "../Team/PlayerTeam";
-
+import * as readline from 'readline';
 
 
 
@@ -15,27 +18,102 @@ export class FightHandler {
       this._npcTeam = npcTeam;
     }
 
-    charactersSpeedComparaison(team1: PlayerTeam, team2: NpcTeam) {
-
-        let charactersSortedBySpeed: Character[] = team1.composition.concat(team2.composition);
-        charactersSortedBySpeed.sort((a, b) => a.speed - b.speed)
-        return charactersSortedBySpeed;
-    }
-    
-    fight() {
+    async oneFightRound() {
       let allCharacters = this.charactersSpeedComparaison(this.playerTeam, this.npcTeam);
+      let attacker: Character | undefined
+      let defender: Character | undefined;
       for (let i = 0; i < allCharacters.length; i++) {
-        if (allCharacters[i].characterType.typeName === "Wizard") {
-          allCharacters[i].characterType.specialCapacityBeforeAttack;
-        } else if (allCharacters[0].characterType.typeName === "Archer") {
-          allCharacters[0].characterType.specialCapacityBeforeAttack;
+        attacker = allCharacters.find((character: Character) => character.hasPlayed === false);
+      }
+        switch (attacker?.team.teamName) {
+          case "PlayerTeam" :
+            const whichEnemy: string = 'Quel ennemi souhaitez-vous attaquer ?'
+            const chosenEnemy = await this.userInterface(whichEnemy);
+            defender = this.chooseEnemyByName(chosenEnemy);
+            console.log(`${attacker} a choisi d'attaquer ${defender}`);
+            this.fight(attacker, defender)
+            break;
+          case "NpcTeam" :
+            defender = allCharacters[Math.floor(Math.random() * this.playerTeam.composition.length)];
+            console.log(`${attacker} se prépare à attaquer ${defender}`);
+            this.fight(attacker, defender)
+          default:
+            console.log("Aucun attaquant n'a été trouvé.");
         }
+      this.fight
+    }
+    beforeAttack(attacker: Character) {
+      switch (attacker.characterType.typeName) {
+        case "Archer":
+          attacker.characterType.specialCapacityBeforeAttack(attacker);
+          break;
+        case "Wizard":
+          attacker.characterType.specialCapacityBeforeAttack(attacker);
+        default:
+          console.log(`${attacker} n'a pas de capacité spéciale avant l'attaque`)
       }
-      if (allCharacters[0].team?.teamName === "PlayerTeam") {
+    }
+
+    hit(attacker: Character) {
+      if (Math.random() < attacker.criticTotal) {
+        return attacker.forceTotal * 2
+      } else {
+        return attacker.forceTotal;
       }
+
+    }
+
+    attack(attacker: Character) {
+      let damage = this.hit(attacker)
+      switch (attacker.characterType.typeName) {
+        case "Viking" :
+          attacker.characterType.specialCapacity(damage, attacker);
+          break;
+        case "Thief" :
+          attacker.characterType.specialCapacity(damage, attacker);
+          break;
+      }
+      return attacker.forceTotal;
+    }
+
+    fight(attacker: Character, defender: Character | undefined) {
+      this.beforeAttack(attacker)
+      let damage: number = this.attack(attacker);
+
     }
 
     onHit() {}
+
+
+    charactersSpeedComparaison(team1: PlayerTeam, team2: NpcTeam) {
+      let charactersSortedBySpeed: Character[] = team1.composition.concat(team2.composition);
+      charactersSortedBySpeed.sort((a, b) => a.speed - b.speed)
+      return charactersSortedBySpeed;
+    }
+
+    chooseEnemyByName(name : string): Character | undefined {
+      const target = this.npcTeam.composition.find((enemy) => enemy.name === name);
+      if (target) {
+        return target;
+      } else {
+        console.log(`Vous ne pouvez pas attaquer ${name}`);
+        return undefined;
+      }
+    }
+
+    async userInterface(question: string): Promise<string> {
+      return new Promise<string>((resolve) => {
+          const rl = readline.createInterface({
+              input: process.stdin,
+              output: process.stdout,
+          });
+
+          rl.question(question, (response: string) => {
+              rl.close();
+              resolve(response);
+          });
+      });
+    }
 
     public get playerTeam(): PlayerTeam {
         return this._playerTeam;

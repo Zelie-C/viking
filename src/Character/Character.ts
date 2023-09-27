@@ -1,5 +1,4 @@
 import { CharacterType } from "../CharaterType/CharacterType";
-import { Basic } from "../CharaterType/Basic";
 import { Team } from "../Team/Team";
 
 export class Character {
@@ -13,27 +12,31 @@ export class Character {
     private _speed: number;
     private _intelligence: number;
     private _pm: number;
+    private _pmMax: number;
     private _critic: number;
     private _team: Team;
+    private _hasPlayed: boolean;
 
 
     constructor(name: string, characterType: CharacterType, team: Team){
         this._name = name;
         this._level = 1;
         this._exp = 0;
-        this._pvMax = 50;
-        this._pv = this.pvMax;
+        this._pvMax = 50 + this.characterType.healthBonus;
+        this._pv = this.pvMax + this.characterType.healthBonus;
         this._characterType = characterType;
         this._force = 10;
         this._speed = 10;
         this._intelligence = 10
         this._pm = 50;
+        this._pmMax = 50 + this.characterType.pmBonus;
         this._critic = 0.02;
         this._team = team;
+        this._hasPlayed = false;
     }
 
     isDead(): boolean {
-      if (this.pvTotal <= 0) {
+      if (this.pv <= 0) {
         return true;
       } else {
         return false;
@@ -78,10 +81,6 @@ export class Character {
 
     set pv(newPv: number) {
       this._pv = newPv;
-    }
-
-    get pvTotal(): number {
-      return this._pv + this._characterType.healthBonus ;
     }
 
     public get pvMax(): number {
@@ -135,8 +134,11 @@ export class Character {
       this._pm = newPm;
     }
 
-    get pmTotal(): number {
-      return this._pm + this.characterType.pmBonus
+    public get pmMax(): number {
+      return this._pmMax;
+    }
+    public set pmMax(value: number) {
+      this._pmMax = value;
     }
 
     get critic(): number {
@@ -150,11 +152,17 @@ export class Character {
     get criticTotal(): number {
       return this._critic + this.characterType.criticBonus;
     }
-    public get team(): Team | null {
+    public get team(): Team {
       return this._team;
     }
-    public set team(value: Team | null) {
+    public set team(value: Team) {
       this._team = value;
+    }
+    public get hasPlayed(): boolean {
+      return this._hasPlayed;
+    }
+    public set hasPlayed(value: boolean) {
+      this._hasPlayed = value;
     }
   }
   //     public attack(): number {

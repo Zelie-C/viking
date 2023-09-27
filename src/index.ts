@@ -17,9 +17,9 @@ const rl = readline.createInterface({
     output: process.stdout,
   })
 
-//   rl.question('Choose an enemy :', (type: string) => {
-    
-//   })
+rl.question('Choose an enemy :', (type: string) => {
+
+})
 
 // const lameDeSang = new Arme("Lame de Sang", 4);
 // const hache = new Arme("Hache", 8)

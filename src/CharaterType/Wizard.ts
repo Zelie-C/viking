@@ -15,8 +15,15 @@ export class Wizard extends CharacterType {
     }
 
     override specialCapacityBeforeAttack(character: Character): number {
-      let pmRecuperation: number = character.intelligenceTotal/2
-      return pmRecuperation;
+      if (character.pm < character.pmMax) {
+        let pmRecuperation: number = character.intelligenceTotal/2
+        character.pm += pmRecuperation;
+        console.log(`${character} récupère ${pmRecuperation} points de mana`);
+        return character.pm;
+      } else {
+        console.log(`${character} ne récupère pas de mana`);
+        return character.pm
+      }
     }
 
 

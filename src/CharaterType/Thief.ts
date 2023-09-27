@@ -15,8 +15,10 @@ export class Thief extends CharacterType {
       super(Thief._typeName, Thief._pvBonus, Thief._forceBonus, Thief._speedBonus, Thief._intelligenceBonus, Thief._pmBonus, Thief._criticBonus)
   }
 
-  override specialCapacity(force: number, thief: Character): number[]{
-    force = thief.forceTotal * 2.5;
+  override specialCapacity(attackValue: number, character: Character): number[]{
+    if (Math.random() < character.criticTotal) {
+      attackValue = character.forceTotal * 2.5;
+    }
     return [force, thief.forceTotal];
   }
 }
