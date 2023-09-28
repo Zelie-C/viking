@@ -16,13 +16,22 @@ export class Viking extends CharacterType {
         super(Viking._typeName, Viking._pvBonus, Viking._forceBonus, Viking._speedBonus, Viking._intelligenceBonus, Viking._pmBonus, Viking._criticBonus)
     }
 
-    override specialCapacity(attaqueValue: number, character: Character): number[] {
+    override specialCapacity(attackValue: number, character: Character): number {
         let restauredPv: number = 0
         let restauredPm: number = 0
-            restauredPv = Math.floor(attaqueValue * 0.15)
-            restauredPm = Math.floor(attaqueValue * 0.03)
-
-        return [restauredPv, restauredPm]
+            restauredPv = Math.floor(attackValue * 0.15);
+            restauredPm = Math.floor(attackValue * 0.03);
+        if (character.pv < character.pvMax) {
+            character.pv += restauredPv;
+            console.log(`${character} récupère ${restauredPv} points de vie`);
+            return character.pv;
+        }
+        if (character.pm < character.pmMax) {
+            character.pm += restauredPm;
+            console.log(`${character} récupère ${restauredPm} points de mana`);
+            return character.pm;
+        }
+        return attackValue;
     }
 
 }

@@ -1,3 +1,4 @@
+import { Character } from "../Character/Character";
 import { CharacterType } from "./CharacterType";
 
 export class Knight extends CharacterType {
@@ -13,8 +14,10 @@ export class Knight extends CharacterType {
         super(Knight._typeName, Knight._pvBonus, Knight._forceBonus, Knight._speedBonus, Knight._intelligenceBonus, Knight._pmBonus, Knight._criticBonus)
     }
 
-    specialCapacityAfterAttack(attackDamage: number): number {
+    override specialCapacityAfterAttack(attackDamage: number, character: Character): number {
       let reduceDamage = attackDamage * 0.75;
-      return reduceDamage;
+      character.pv -= reduceDamage;
+      console.log(`${character} perd ${reduceDamage} points de vie`)
+      return character.pv;
     }
 }

@@ -1,12 +1,7 @@
 import { Character } from "../Character/Character";
-import { Archer } from "../CharaterType/Archer";
-import { CharacterType } from "../CharaterType/CharacterType";
-import { Viking } from "../CharaterType/Viking";
 import { NpcTeam } from "../Team/NpcTeam";
 import { PlayerTeam } from "../Team/PlayerTeam";
 import * as readline from 'readline';
-
-
 
 
 export class FightHandler {
@@ -25,13 +20,15 @@ export class FightHandler {
       for (let i = 0; i < allCharacters.length; i++) {
         attacker = allCharacters.find((character: Character) => character.hasPlayed === false);
       }
+
         switch (attacker?.team.teamName) {
           case "PlayerTeam" :
             const whichEnemy: string = 'Quel ennemi souhaitez-vous attaquer ?'
             const chosenEnemy = await this.userInterface(whichEnemy);
             defender = this.chooseEnemyByName(chosenEnemy);
             console.log(`${attacker} a choisi d'attaquer ${defender}`);
-            this.fight(attacker, defender)
+            this.fight(attacker, defender!);
+            
             break;
           case "NpcTeam" :
             defender = allCharacters[Math.floor(Math.random() * this.playerTeam.composition.length)];
@@ -40,8 +37,9 @@ export class FightHandler {
           default:
             console.log("Aucun attaquant n'a été trouvé.");
         }
-      this.fight
+
     }
+
     beforeAttack(attacker: Character) {
       switch (attacker.characterType.typeName) {
         case "Archer":
@@ -66,23 +64,31 @@ export class FightHandler {
     attack(attacker: Character) {
       let damage = this.hit(attacker)
       switch (attacker.characterType.typeName) {
-        case "Viking" :
-          attacker.characterType.specialCapacity(damage, attacker);
-          break;
-        case "Thief" :
-          attacker.characterType.specialCapacity(damage, attacker);
-          break;
+        case "Thief":
+          return attacker.characterType.specialCapacity(damage, attacker);
+        case "Viking":
+          return damage = attacker.characterType.specialCapacity(damage, attacker);
+        default:
+          return damage;
       }
-      return attacker.forceTotal;
     }
 
-    fight(attacker: Character, defender: Character | undefined) {
+    fight(attacker: Character, defender: Character)  {
       this.beforeAttack(attacker)
       let damage: number = this.attack(attacker);
-
+      this.onHit(damage, defender);
     }
 
-    onHit() {}
+    onHit(attackValue: number, defender: Character) {
+      switch (defender.characterType.typeName) {
+        case "Knight":
+          return defender.characterType.specialCapacityAfterAttack(attackValue, defender);
+        default: 
+          console.log(`${defender} perd ${attackValue} points de vie`)
+          return defender.pv -= attackValue;
+      }
+      
+    }
 
 
     charactersSpeedComparaison(team1: PlayerTeam, team2: NpcTeam) {
