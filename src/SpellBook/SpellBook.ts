@@ -1,6 +1,6 @@
 
 export abstract class SpellBook {
-    private static spells: Spells[]
+    private static spells: Spells[];
 
     constructor() {
         this._spells

@@ -16,6 +16,8 @@ export class Character {
     private _critic: number;
     private _team: Team;
     private _hasPlayed: boolean;
+    private _latestDamage: number;
+  
 
 
     constructor(name: string, characterType: CharacterType, team: Team){
@@ -33,6 +35,7 @@ export class Character {
         this._critic = 0.02;
         this._team = team;
         this._hasPlayed = false;
+        this._latestDamage = 0;
     }
 
     isDead(): boolean {
@@ -163,6 +166,12 @@ export class Character {
     }
     public set hasPlayed(value: boolean) {
       this._hasPlayed = value;
+    }
+    public get latestDamage(): number {
+      return this._latestDamage;
+    }
+    public set latestDamage(value: number) {
+      this._latestDamage = value;
     }
   }
   //     public attack(): number {

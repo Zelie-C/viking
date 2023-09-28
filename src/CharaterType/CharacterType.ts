@@ -8,6 +8,8 @@ export abstract class CharacterType {
     private _intelligenceBonus: number;
     private _pmBonus: number;
     private _criticBonus: number;
+    private _hasMagicalShield: boolean;
+    private _magicalShield: number;
 
 
     constructor(typeName: string, healthB : number, forceB: number, speedB: number, intelB: number, pmB: number, critB: number) {
@@ -18,6 +20,8 @@ export abstract class CharacterType {
         this._intelligenceBonus = intelB;
         this._pmBonus = pmB;
         this._criticBonus = critB;
+        this._hasMagicalShield = false;
+        this._magicalShield = 0;
     }
 
 
@@ -75,4 +79,16 @@ export abstract class CharacterType {
     public set criticBonus(value: number) {
         this._criticBonus = value;
     }
+    public get hasMagicalShield(): boolean {
+        return this._hasMagicalShield;
+    }
+    public set hasMagicalShield(value: boolean) {
+        this._hasMagicalShield = value;
+    }
+    public get magicalShield(): number {
+        return this._magicalShield;
+      }
+      public set magicalShield(value: number) {
+        this._magicalShield = value;
+      }
 }
