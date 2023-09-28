@@ -12,8 +12,8 @@ export class Wizard extends CharacterType {
     private static _criticBonus: number = 0;
     private static _spellBook: SpellBook;
 
-  
-  
+
+
 
     constructor(){
         super(Wizard._typeName, Wizard._pvBonus, Wizard._forceBonus, Wizard._speedBonus, Wizard._intelligenceBonus, Wizard._pmBonus, Wizard._criticBonus)
@@ -38,5 +38,5 @@ export class Wizard extends CharacterType {
     public static set spellBook(value: SpellBook) {
       Wizard._spellBook = value;
     }
-    
+
 }

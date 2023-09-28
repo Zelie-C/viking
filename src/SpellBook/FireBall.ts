@@ -1,7 +1,13 @@
 import { Character } from "../Character/Character";
-import { Spells } from "./Spells";
+import { Spell } from "./Spell";
 
-export class FireBall extends Spells {
+export class FireBall extends Spell {
+
+  private static _name: string;
+
+  constructor(){
+    super(FireBall._name)
+  }
     public override cast(character: Character){
         if (this.canCast(character) === true) {
             character.pm -= 35;
