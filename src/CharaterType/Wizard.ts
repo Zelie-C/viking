@@ -9,6 +9,7 @@ export class Wizard extends CharacterType {
     private static _intelligenceBonus: number = 5;
     private static _pmBonus: number = 45;
     private static _criticBonus: number = 0;
+    private static _spellBook: Spellbook;
 
     constructor(){
         super(Wizard._typeName, Wizard._pvBonus, Wizard._forceBonus, Wizard._speedBonus, Wizard._intelligenceBonus, Wizard._pmBonus, Wizard._criticBonus)
