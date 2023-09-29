@@ -1,6 +1,6 @@
-import { Equibable } from "./Equipable";
+import { Equipable } from "./Equipable";
 
-export abstract class Weapon extends Equibable {
+export abstract class Weapon extends Equipable {
     private _forceBonus: number;
     private _speedBonus?: number | undefined;
     private _intelligenceBonus?: number | undefined;
@@ -13,22 +13,22 @@ export abstract class Weapon extends Equibable {
         this._intelligenceBonus = intelligenceBonus
     }
 
-    public static get forceBonus(): number {
-        return this.forceBonus;
+    public get forceBonus(): number {
+        return this._forceBonus;
     }
-    public static set forceBonus(value: number) {
-        this.forceBonus = value;
+    public set forceBonus(value: number) {
+        this._forceBonus = value;
     }
-    public static get speedBonus(): number | undefined {
-        return this.speedBonus;
+    public get speedBonus(): number | undefined {
+        return this._speedBonus;
     }
-    public static set speedBonus(value: number | undefined) {
-        this.speedBonus = value;
+    public set speedBonus(value: number | undefined) {
+        this._speedBonus = value;
     }
-    public static get intelligenceBonus(): number | undefined {
-        return this.intelligenceBonus;
+    public get intelligenceBonus(): number | undefined {
+        return this._intelligenceBonus;
     }
-    public static set intelligenceBonus(value: number | undefined) {
-        this.intelligenceBonus = value;
+    public set intelligenceBonus(value: number | undefined) {
+        this._intelligenceBonus = value;
     }
 }

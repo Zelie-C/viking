@@ -1,6 +1,6 @@
-import { Equibable } from "./Equipable"
+import { Equipable } from "./Equipable"
 
-export abstract class Armor extends Equibable {
+export abstract class Armor extends Equipable {
     private static _shieldBonus: number;
     private static _forceBonus?: number;
     private static _speedBonus?: number | undefined;

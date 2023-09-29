@@ -10,8 +10,10 @@ export abstract class Consommable implements IObjet {
         this._weight = weight;
     }
 
-    use: () => {
-        
+    abstract consume(): any;
+    
+    use(): any {
+        this.consume();
     };
 
     public get name(): string {
