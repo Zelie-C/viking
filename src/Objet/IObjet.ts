@@ -1,7 +1,9 @@
+import { Character } from "../Character/Character";
+
 interface IObjet {
     name: string;
     price: number;
     weight: number;
     
-    use: () => {};
+    use: (character: Character) => {};
 }

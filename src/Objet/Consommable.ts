@@ -1,3 +1,5 @@
+import { Character } from "../Character/Character";
+
 export abstract class Consommable implements IObjet {
     private _name: string;
     private _price: number;
@@ -12,7 +14,7 @@ export abstract class Consommable implements IObjet {
 
     abstract consume(): any;
     
-    use(): any {
+    use(character: Character): any {
         this.consume();
     };
 

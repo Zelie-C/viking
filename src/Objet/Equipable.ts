@@ -1,3 +1,5 @@
+import { Character } from "../Character/Character";
+
 export abstract class Equipable implements IObjet {
     private _name: string;
     private _price: number;
@@ -6,7 +8,7 @@ export abstract class Equipable implements IObjet {
     
     abstract equip(): any;
 
-    use(): any {
+    use(character: Character): any {
         this.equip();
     };
     
