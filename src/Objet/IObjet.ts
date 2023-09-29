@@ -1,6 +1,6 @@
 import { Character } from "../Character/Character";
 
-interface IObjet {
+export interface IObjet {
     name: string;
     price: number;
     weight: number;

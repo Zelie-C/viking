@@ -1,4 +1,5 @@
 import { Character } from "../Character/Character";
+import { IObjet } from "./IObjet";
 
 export abstract class Equipable implements IObjet {
     private _name: string;
