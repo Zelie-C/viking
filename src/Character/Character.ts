@@ -1,4 +1,6 @@
 import { CharacterType } from "../CharaterType/CharacterType";
+import { Consommable } from "../Objet/Consommable";
+import { Equipable } from "../Objet/Equipable";
 import { Team } from "../Team/Team";
 
 export class Character {
@@ -17,10 +19,13 @@ export class Character {
     private _team: Team;
     private _hasPlayed: boolean;
     private _latestDamage: number;
+    private _equipement?: Equipable[] | undefined;
+    private _consommable?: Consommable[] | undefined;
+  
   
 
 
-    constructor(name: string, characterType: CharacterType, team: Team){
+    constructor(name: string, characterType: CharacterType, team: Team, equipement?: Equipable[] | undefined, consommable?: Consommable[] | undefined){
         this._name = name;
         this._level = 1;
         this._exp = 0;
@@ -36,6 +41,9 @@ export class Character {
         this._team = team;
         this._hasPlayed = false;
         this._latestDamage = 0;
+        this._equipement = equipement;
+        this._consommable = consommable;
+
     }
 
     isDead(): boolean {
@@ -172,6 +180,18 @@ export class Character {
     }
     public set latestDamage(value: number) {
       this._latestDamage = value;
+    }
+    public get equipement(): Equipable[] | undefined {
+      return this._equipement;
+    }
+    public set equipement(value: Equipable[] | undefined) {
+      this._equipement = value;
+    }
+    public get consommable(): Consommable[] | undefined {
+      return this._consommable;
+    }
+    public set consommable(value: Consommable[] | undefined) {
+      this._consommable = value;
     }
   }
   //     public attack(): number {
