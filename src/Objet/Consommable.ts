@@ -5,7 +5,6 @@ export abstract class Consommable implements IObjet {
     private _name: string;
     private _price: number;
     private _weight: number;
-    
 
     constructor(name: string, price: number, weight: number) {
         this._name = name;
@@ -14,7 +13,7 @@ export abstract class Consommable implements IObjet {
     }
 
     abstract consume(character: Character): any;
-    
+
     use(character: Character): any {
         this.consume(character);
     };
