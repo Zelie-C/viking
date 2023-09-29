@@ -10,14 +10,13 @@ export class Wizard extends CharacterType {
     private static _intelligenceBonus: number = 5;
     private static _pmBonus: number = 45;
     private static _criticBonus: number = 0;
-    private static _spellBook: SpellBook;
-
-
+    private _spellBook: SpellBook;
+  
 
 
     constructor(){
         super(Wizard._typeName, Wizard._pvBonus, Wizard._forceBonus, Wizard._speedBonus, Wizard._intelligenceBonus, Wizard._pmBonus, Wizard._criticBonus)
-        Wizard._spellBook = SpellBook;
+        this._spellBook = new SpellBook();
     }
 
     override specialCapacityBeforeAttack(character: Character): number {
@@ -32,11 +31,10 @@ export class Wizard extends CharacterType {
       }
     }
 
-    public static get spellBook(): SpellBook {
-      return Wizard._spellBook;
+    public get spellBook(): SpellBook {
+      return this._spellBook;
     }
-    public static set spellBook(value: SpellBook) {
-      Wizard._spellBook = value;
+    public set spellBook(value: SpellBook) {
+      this._spellBook = value;
     }
-
 }

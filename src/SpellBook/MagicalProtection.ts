@@ -8,7 +8,7 @@ export class MagicalProtection extends Spell {
   constructor(){
     super(MagicalProtection._name)
   }
-
+ 
   public override cast(character: Character){
     if (this.canCast(character) === true) {
       let pmCost: number = character.pm * 0.3;

@@ -17,6 +17,7 @@ export class Viking extends CharacterType {
     }
 
     override specialCapacity(attackValue: number, character: Character): number {
+        
         let restauredPv: number = 0
         let restauredPm: number = 0
             restauredPv = Math.floor(attackValue * 0.15);
@@ -31,6 +32,7 @@ export class Viking extends CharacterType {
             console.log(`${character} récupère ${restauredPm} points de mana`);
             return character.pm;
         }
+        character.hasPlayed = true;
         return attackValue;
     }
 

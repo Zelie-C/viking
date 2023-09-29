@@ -16,6 +16,7 @@ export class Knight extends CharacterType {
 
     override specialCapacityAfterAttack(attackDamage: number, character: Character): number {
       let reduceDamage = attackDamage * 0.75;
+      character.latestDamage = reduceDamage;
       character.pv -= reduceDamage;
       console.log(`${character} perd ${reduceDamage} points de vie`)
       return character.pv;

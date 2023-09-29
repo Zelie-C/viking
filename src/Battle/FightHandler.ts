@@ -1,4 +1,7 @@
 import { Character } from "../Character/Character";
+import { FireBall } from "../SpellBook/FireBall";
+import { MagicalHeal } from "../SpellBook/MagicalHeal";
+import { MagicalProtection } from "../SpellBook/MagicalProtection";
 import { NpcTeam } from "../Team/NpcTeam";
 import { PlayerTeam } from "../Team/PlayerTeam";
 import * as readline from 'readline';
@@ -62,20 +65,32 @@ export class FightHandler {
     }
 
     attack(attacker: Character) {
-      let damage = this.hit(attacker)
+      let damage = this.hit(attacker);
       switch (attacker.characterType.typeName) {
         case "Thief":
           return attacker.characterType.specialCapacity(damage, attacker);
         case "Viking":
           return damage = attacker.characterType.specialCapacity(damage, attacker);
+        case "Wizard":
+          attacker.hasPlayed = true;
+          if (attacker.pm > attacker.pmMax * 0.55) {
+            return new FireBall().cast(attacker);
+          } else if (attacker.pv = attacker.pvMax * 0.25) {
+              return new MagicalHeal().cast(attacker);
+          } else if (attacker.latestDamage >= attacker.pvMax * 0.15) {
+              return new MagicalProtection().cast(attacker);
+          } else {
+              return damage;
+          } 
         default:
+          attacker.hasPlayed = true;
           return damage;
       }
     }
 
     fight(attacker: Character, defender: Character)  {
       this.beforeAttack(attacker)
-      let damage: number = this.attack(attacker);
+      let damage: number = this.attack(attacker)!;
       this.onHit(damage, defender);
     }
 
@@ -83,8 +98,24 @@ export class FightHandler {
       switch (defender.characterType.typeName) {
         case "Knight":
           return defender.characterType.specialCapacityAfterAttack(attackValue, defender);
+        case "Wizard":
+          if (defender.characterType.hasMagicalShield === true) {
+            defender.characterType.magicalShield -= attackValue;
+            if (defender.characterType.magicalShield <= 0) {
+              let value: number = Math.abs(defender.characterType.magicalShield);
+              attackValue = value;
+              defender.characterType.magicalShield = 0;
+              defender.characterType.hasMagicalShield = false;
+              defender.pv -= attackValue;
+              defender.latestDamage = attackValue;
+              return defender.pv
+            } else {
+              defender.pv -= attackValue;
+            }
+          }
         default: 
-          console.log(`${defender} perd ${attackValue} points de vie`)
+          console.log(`${defender} perd ${attackValue} points de vie`);
+          defender.latestDamage = attackValue;
           return defender.pv -= attackValue;
       }
       
