@@ -1,3 +1,4 @@
+import { isUndefined } from "util";
 import { CharacterType } from "../CharaterType/CharacterType";
 import { Consommable } from "../Objet/Consommable";
 import { Equipable } from "../Objet/Equipable";
@@ -19,18 +20,18 @@ export class Character {
     private _team: Team;
     private _hasPlayed: boolean;
     private _latestDamage: number;
-    private _equipement?: Equipable[] | undefined;
-    private _consommable?: Consommable[] | undefined;
-  
-  
+    private _equipement: Equipable[];
+    private _consommable: Consommable[];
 
 
-    constructor(name: string, characterType: CharacterType, team: Team, equipement?: Equipable[] | undefined, consommable?: Consommable[] | undefined){
+
+
+    constructor(name: string, characterType: CharacterType, team: Team, equipement: Equipable[], consommable: Consommable[]){
         this._name = name;
         this._level = 1;
         this._exp = 0;
-        this._pvMax = 50 + this.characterType.healthBonus;
-        this._pv = this.pvMax + this.characterType.healthBonus;
+        this._pvMax = 50;
+        this._pv = this.pvMax;
         this._characterType = characterType;
         this._force = 10;
         this._speed = 10;
@@ -99,6 +100,10 @@ export class Character {
     }
     public set pvMax(value: number) {
       this._pvMax = value;
+    }
+
+    public get pvTotal() {
+      return this._pv + this.characterType.healthBonus;
     }
 
     get force(): number {
@@ -181,45 +186,31 @@ export class Character {
     public set latestDamage(value: number) {
       this._latestDamage = value;
     }
-    public get equipement(): Equipable[] | undefined {
+    public get equipement(): Equipable[] {
       return this._equipement;
     }
-    public set equipement(value: Equipable[] | undefined) {
+    public set equipement(value: Equipable[]) {
       this._equipement = value;
     }
-    public get consommable(): Consommable[] | undefined {
+    set newEquipement(value: Equipable) {
+      this._equipement.push(value);
+    }
+    get equipementForce(){
+      let itemsForce: number = 0;
+      for (let i = 0 ; i<this.equipement.length; i++){
+        itemsForce += this.equipement[i].forceBonus;
+      }
+      return itemsForce
+    }
+
+    public get consommable(): Consommable[] {
       return this._consommable;
     }
-    public set consommable(value: Consommable[] | undefined) {
+    public set consommable(value: Consommable[]) {
       this._consommable = value;
     }
-  }
-  //     public attack(): number {
-  //       let damage: number;
-  //       let coupCritique = Math.random();
-  //       if (coupCritique < 0.1) {
-  //         damage = this.force *2;
-  //         console.log(`${this.nom} fait un coup critique et inflige ${damage} de dégats`)
-  //       } else {
-  //         damage = this.force
-  //         console.log(`${this.nom} inflige ${damage} de dégats`)
-  //       }
-  //       if (this.arme.possedeVolDeVie() && this.pv < this.pvMax){
-  //         let stealedPv = Math.trunc((this.force) * 0.13);
-  //         if (this.pv + stealedPv > this.pvMax) {
-  //           console.log(`${this.nom} récupère tous ses points de vie`)
-  //           this.pv += this.pvMax
-  //         } else {
-  //           this.pv += this.pv + stealedPv
-  //           console.log(`${this.nom} récupère ${stealedPv} points de vie`)
-  //         }
-  //       } else if (this.arme.possedeVolDeVie() && this.pv === this.pvMax) {
-  //         console.log(`${this.nom} ne récupère pas de vie`)
-  //       }
-  //     return damage;
-  //   }
+    set newConsommable(value: Consommable) {
+      this._consommable.push(value);
+    }
 
-  //   public takeDamage(damage: number) {
-  //     console.log(`${this.nom} perd ${damage - this.defense} points de vie`)
-  //     return this.pv -= damage - this.defense;
-  //   }
+  }

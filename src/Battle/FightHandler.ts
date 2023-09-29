@@ -21,7 +21,7 @@ export class FightHandler {
       let attacker: Character | undefined
       let defender: Character | undefined;
       for (let i = 0; i < allCharacters.length; i++) {
-        attacker = allCharacters.find((character: Character) => character.hasPlayed === false);
+        attacker = allCharacters.find((character: Character) => character.hasPlayed === false && !character.isDead());
       }
 
         switch (attacker?.team.teamName) {
@@ -31,7 +31,7 @@ export class FightHandler {
             defender = this.chooseEnemyByName(chosenEnemy);
             console.log(`${attacker} a choisi d'attaquer ${defender}`);
             this.fight(attacker, defender!);
-            
+
             break;
           case "NpcTeam" :
             defender = allCharacters[Math.floor(Math.random() * this.playerTeam.composition.length)];
@@ -81,7 +81,7 @@ export class FightHandler {
               return new MagicalProtection().cast(attacker);
           } else {
               return damage;
-          } 
+          }
         default:
           attacker.hasPlayed = true;
           return damage;
@@ -89,7 +89,7 @@ export class FightHandler {
     }
 
     fight(attacker: Character, defender: Character)  {
-      this.beforeAttack(attacker)
+      this.beforeAttack(attacker);
       let damage: number = this.attack(attacker)!;
       this.onHit(damage, defender);
     }
@@ -113,12 +113,11 @@ export class FightHandler {
               defender.pv -= attackValue;
             }
           }
-        default: 
+        default:
           console.log(`${defender} perd ${attackValue} points de vie`);
           defender.latestDamage = attackValue;
           return defender.pv -= attackValue;
       }
-      
     }
 
 

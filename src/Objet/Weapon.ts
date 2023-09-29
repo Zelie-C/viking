@@ -4,7 +4,7 @@ export abstract class Weapon extends Equipable {
     private _forceBonus: number;
     private _speedBonus?: number | undefined;
     private _intelligenceBonus?: number | undefined;
-    
+
 
     constructor(name: string, price: number, weight: number, level: number, forceBonus: number, speedBonus: number, intelligenceBonus: number) {
         super(name, price, weight, level);

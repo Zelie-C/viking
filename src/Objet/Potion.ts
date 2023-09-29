@@ -4,8 +4,8 @@ import { Consommable } from "./Consommable";
 export class Potion extends Consommable {
     private _effect: potionEffect;
     private _power: potionPower;
-    
-    
+
+
     constructor(name: string, price: number, weight: number, effect: potionEffect, power: potionPower){
         super(name, price, weight)
         this._effect = effect;
@@ -19,16 +19,16 @@ export class Potion extends Consommable {
         switch (this.effect){
             case 0:
                 character.pm *= this.power;
-                console.log(`${character} utilise ${this.name} et récupère ${this.power} points de mana`)
+                console.log(`${character.name} utilise une ${this.name} et récupère ${this.power} points de mana`)
                 break;
             case 1:
                 character.pv *= this.power;
-                console.log(`${character} utilise ${this.name} et récupère ${this.power} points de vie`);
+                console.log(`${character.name} utilise ${this.name} et récupère ${this.power} points de vie`);
                 break;
             default:
                 console.log("Aucun potion n'a été consommée")
         }
-        
+
     }
 
     public get effect(): potionEffect {
@@ -43,7 +43,7 @@ export class Potion extends Consommable {
     public set power(value: potionPower) {
         this._power = value;
     }
-    
+
 }
 
 export enum potionEffect{
@@ -51,7 +51,7 @@ export enum potionEffect{
     life
 }
 
-export enum potionPower { 
+export enum potionPower {
     feeble = 10,
     medium = 45,
     strong = 100

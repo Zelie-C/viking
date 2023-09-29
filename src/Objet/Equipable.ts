@@ -6,21 +6,24 @@ export abstract class Equipable implements IObjet {
     private _price: number;
     private _weight: number;
     private _level: number;
-    
-    abstract equip(): any;
+    abstract forceBonus: number;
+    abstract speedBonus?: number;
+    abstract intelligenceBonus?: number;
+
+    abstract equip(character: Character): any;
 
     use(character: Character): any {
-        this.equip();
+        this.equip(character);
     };
-    
+
     constructor(name: string, price: number, weight: number, level: number) {
-        
+
         this._name = name;
         this._price = price;
         this._weight = weight;
         this._level = level;
     }
-    
+
     public get name(): string {
         return this._name;
     }
